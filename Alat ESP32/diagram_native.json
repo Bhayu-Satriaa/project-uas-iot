@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "author": "Kelompok 3 TRPL 3A Politani Samarinda (1 LED Native Components)",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn",
+      "top": 240,
+      "left": -120,
+      "attrs": { "color": "blue", "label": "Push-to-Talk" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_status",
+      "top": 160,
+      "left": -110,
+      "attrs": { "color": "blue", "label": "Status LED" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_status",
+      "top": 200,
+      "left": -100,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-microphone",
+      "id": "mic",
+      "top": -120,
+      "left": -140,
+      "attrs": { "label": "INMP441 Mic I2S" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "spk",
+      "top": -130,
+      "left": 160,
+      "attrs": { "label": "Speaker 8Ω 3W (MAX98357A)" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "btn:1.l", "esp:GND.1", "black", [ "h-20", "v20" ] ],
+    [ "btn:2.l", "esp:D27", "blue", [ "h-20", "v-20" ] ],
+
+    [ "esp:D13", "r_status:1", "red", [ "h-20", "v10" ] ],
+    [ "r_status:2", "led_status:A", "red", [ "h0" ] ],
+    [ "led_status:C", "esp:GND.1", "black", [ "h-20", "v-10" ] ],
+
+    [ "mic:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "mic:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "mic:OUT", "esp:D34", "blue", [ "h0" ] ],
+
+    [ "spk:2", "esp:D22", "purple", [ "h0" ] ],
+    [ "spk:1", "esp:GND.2", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}

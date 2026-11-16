@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "author": "Kelompok 3 TRPL 3A Politani Samarinda (1 LED System)",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn",
+      "top": 240,
+      "left": -120,
+      "attrs": { "color": "blue", "label": "Push-to-Talk" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_status",
+      "top": 160,
+      "left": -110,
+      "attrs": { "color": "blue", "label": "Status LED" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_status",
+      "top": 200,
+      "left": -100,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "chip-inmp441",
+      "id": "mic",
+      "top": -120,
+      "left": -170,
+      "attrs": { "label": "INMP441 Mic I2S" }
+    },
+    {
+      "type": "chip-max98357a",
+      "id": "amp",
+      "top": -120,
+      "left": 140,
+      "attrs": { "label": "MAX98357A Amp I2S" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "spk",
+      "top": -130,
+      "left": 280,
+      "attrs": { "label": "Speaker 8Ω 3W" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "btn:1.l", "esp:GND.1", "black", [ "h-20", "v20" ] ],
+    [ "btn:2.l", "esp:D27", "blue", [ "h-20", "v-20" ] ],
+
+    [ "esp:D13", "r_status:1", "red", [ "h-20", "v10" ] ],
+    [ "r_status:2", "led_status:A", "red", [ "h0" ] ],
+    [ "led_status:C", "esp:GND.1", "black", [ "h-20", "v-10" ] ],
+
+    [ "mic:VDD", "esp:3V3", "red", [ "h0" ] ],
+    [ "mic:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "mic:SCK", "esp:D32", "orange", [ "h0" ] ],
+    [ "mic:WS", "esp:D33", "yellow", [ "h0" ] ],
+    [ "mic:SD", "esp:D34", "blue", [ "h0" ] ],
+    [ "mic:L/R", "esp:GND.1", "black", [ "h0" ] ],
+
+    [ "amp:VIN", "esp:VIN", "red", [ "h0" ] ],
+    [ "amp:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "amp:DIN", "esp:D22", "purple", [ "h0" ] ],
+    [ "amp:BCLK", "esp:D26", "orange", [ "h0" ] ],
+    [ "amp:LRC", "esp:D25", "yellow", [ "h0" ] ],
+
+    [ "amp:OUT+", "spk:2", "red", [ "h0" ] ],
+    [ "amp:OUT-", "spk:1", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}

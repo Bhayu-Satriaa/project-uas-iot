@@ -1,0 +1,13 @@
+{
+  "name": "MAX98357A I2S Amplifier",
+  "author": "Kelompok 3 TRPL 3A Politani",
+  "pins": [
+    "VIN",
+    "GND",
+    "DIN",
+    "BCLK",
+    "LRC",
+    "OUT+",
+    "OUT-"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "INMP441 I2S Microphone",
+  "author": "Kelompok 3 TRPL 3A Politani",
+  "pins": [
+    "VDD",
+    "GND",
+    "SD",
+    "WS",
+    "SCK",
+    "L/R"
+  ]
+}
